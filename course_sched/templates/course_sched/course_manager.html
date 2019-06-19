@@ -1,0 +1,129 @@
+{% load static %}
+{% load render_table from django_tables2 %}
+{% csrf_token %}
+<!DOCTYPE html>
+<html>
+
+
+<head>
+    <title>Course Scheduler</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=5, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'course_sched/tables.css' %}" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{%static 'course_sched/coursePage.js'%}"></script>
+
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function () { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+    <noscript>
+        <link rel="stylesheet" href="{% static 'course_sched/tables.css' %}" /></noscript>
+</head>
+
+<div id="wrapper">
+    <nav id="nav">
+        <ul style="display:-webkit-inline-flex; list-style: none; border:1px solid #ccc; padding:10px;">
+            <li style="white-space: nowrap; border-right: 1px solid #cccccc; padding-inline-end: 10px"><a href="../faculty_manager/">Faculty
+                    Manager</a></li>
+            <li style="white-space: nowrap; border-right: 1px solid #cccccc; padding-inline-end: 10px"><a href="../course_manager/">Course
+                    Manager</a></li>
+            <li style="white-space: nowrap; border-right: 1px solid #cccccc; padding-inline-end: 10px"><a href="../faculty_preferences/">Faculty
+                    Preferences</a></li>
+            <li style="white-space: nowrap; padding-inline-end: 10px"><a href="../semester_manager/">Semsester Manager</a></li>
+        </ul>
+    </nav>
+    <section id="main">
+        <header>
+            <h1>Course Manager</h1>
+        </header>
+
+        <h2 id="alertMessage" style="display:none">Some alert label</h2>
+
+        <button id="addCourseButton" onclick="toggleAddCourseForm()">Add Course</button>
+
+        <hr /> <!-- hr is the line that goes across the screen -->
+
+        <div id="newCourse" style="display:none">
+
+            <body class="is-preload">
+                <form method="post" id="addForm">{% csrf_token %}
+                    <div class="fields">
+                        <div class="field">
+                            <input type="text" name="name" id="name" placeholder="Name" />
+                        </div>
+                        <div class="field">
+                            <input type="text" name="crn" id="crn" placeholder="CRN" />
+                        </div>
+                        <div class="field">
+                            <input type="text" name="units" id="units" placeholder="Units" />
+                        </div>
+                        <div class="field">
+                            <input type="checkbox" name="needs_computer" id="needs_computer" />
+                            <label class="form-check-label" for="needs_computer">Needs Computer</label>
+                            <input type="checkbox" name="has_lab" id="has_lab" />
+                            <label class="form-check-label" for="has_lab">Has Lab</label>
+                            <input type="checkbox" name="lab_needs_computer" id="lab_needs_computer" />
+                            <label class="form-check-label" for="lab_needs_computer">Lab Needs Computer</label>
+                        </div>
+                        <ul class="actions special">
+                            <button form="addForm">Submit</button>
+                        </ul>
+                    </div>
+                </form>
+                <hr /> <!-- hr is the line that goes across the screen -->
+            </body>
+        </div>
+
+        <div id="editCourse" style="display:none">
+
+            <body class="is-preload">
+                <label id="idToEdit" style="display:none">idToEdit</label>
+                <form method="post" id="editForm">{% csrf_token %}
+                    <div class="fields">
+                        <div class="field">
+                            <input type="text" name="name" id="editName" placeholder="Name" />
+                        </div>
+                        <div class="field">
+                            <input type="text" name="crn" id="editCrn" placeholder="CRN" />
+                        </div>
+                        <div class="field">
+                            <input type="text" name="units" id="editUnits" placeholder="Units" />
+                        </div>
+                        <div class="field">
+                            <input type="checkbox" name="needs_computer" id="edit_needs_computer" />
+                            <label class="form-check-label" for="edit_needs_computer">Needs Computer</label>
+                            <input type="checkbox" name="has_lab" id="edit_has_lab" />
+                            <label class="form-check-label" for="edit_has_lab">Has Lab</label>
+                            <input type="checkbox" name="lab_needs_computer" id="edit_lab_needs_computer" />
+                            <label class="form-check-label" for="edit_lab_needs_computer">Lab Needs Computer</label>
+                        </div>
+                        <ul class="actions special">
+                            <button form="editForm">Save</button><button class="deleteForm">Delete</button>
+                        </ul>
+                    </div>
+                </form>
+                <hr /> <!-- hr is the line that goes across the screen -->
+            </body>
+        </div>
+
+        <div class="table" id="courseTable">
+            {% render_table table %}
+        </div>
+
+        <hr /> <!-- hr is the line that goes across the screen -->
+
+    </section>
+
+    <footer id="footer">
+        <ul class="copyright">
+            <li>&copy; Team 5</li>
+            <li>Design: <a href="http://spacex.com">Fall 2018</a></li>
+        </ul>
+    </footer>
+
+</div>
+
+</html>

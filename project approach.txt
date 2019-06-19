@@ -1,0 +1,32 @@
+React, Redux, Firebase
+rails, sql lite, heroku (cucumber rspec)
+
+backend:
+3 tables: courses, classrooms, eligible faculty
+
+courses have fields:
+course_ID, course_name, num_sections, num_units, timeblock, num_available_classrooms
+
+classrooms have fields:
+Building name, room number, time available, num_seats
+
+eligible faculty have fields:
+type of faculty(lecturer, admin, chair), num_units_to_teach, time availability,
+courses to teach.
+
+front end:
+forms for each faculty role:
+faculty: availability for courses similar to fields in backend.
+admin: availability for classrooms similar to fields in backend.
+chair: bit of both
+
+calender: week format (mon-fri columns with hourly rows)
+drag and drop courses? 
+only if all requirements are available(has classroom, teacher, etc)
+show: calender with table on the border that has a scrolling list of courses.
+
+auto generated or chair manipulated
+calender has multiple saves.  Has option to be approved or not approved.
+
+balsalmic update ui:
+https://balsamiq.cloud/skp1ynw/p87kce0/r2278

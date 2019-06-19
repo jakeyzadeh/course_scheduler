@@ -1,0 +1,40 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'course_sched/style.css' %}">
+<html>
+<head>
+    <title>Course Scheduler</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'course_sched/style.css' %}" />
+    <noscript>
+        <link rel="stylesheet" href="{% static 'course_sched/style.css' %}" /></noscript>
+</head>
+<body class="is-preload">
+    <div id="wrapper">
+        <section id="main">
+            <header>
+                <h1>USD Course Scheduling</h1>
+                <hr />
+            </header>
+                <div>
+                    <a href="/course_sched/faculty_manager/"><button>Faculty Manager</button></a>
+                    <a href="/course_sched/course_manager"><button>Course Manager</button></a>
+                    <a href="/course_sched/faculty_preferences"><button>Faculty Preferences</button></a>
+                    <a href="/course_sched/semester_manager"><button>Semester Manager</button></a>
+                </div>
+        </section>
+        <footer id="footer">
+            <ul class="copyright">
+                <li>&copy; Team 5</li>
+                <li>Design: <a href="http://spacex.com">Fall 2018</a></li>
+            </ul>
+        </footer>
+    </div>
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function () { document.body.className = document.body.className.replace(/\bis-preload\b/, ''); });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+</body>
+</html>
